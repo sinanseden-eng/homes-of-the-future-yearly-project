@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homes of the Future — Project Guide & Progress Checks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0e7490;
+      --primary-light: #0891b2;
+      --primary-subtle: #cffafe;
+      --secondary: #0d6efd;
+      --accent: #d97706;
+      --dark: #0f172a;
+      --dark-card: #1e293b;
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-300: #cbd5e1;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1e293b;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 20px 35px -10px rgba(0, 0, 0, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--slate-50);
+      color: var(--slate-800);
+      line-height: 1.6;
+      padding-bottom: 80px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #083344 0%, #0e7490 50%, #155e75 100%);
+      color: #ffffff;
+      padding: 56px 24px 72px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      top: 0; right: 0; bottom: 0; left: 0;
+      background: radial-gradient(circle at 85% 20%, rgba(255,255,255,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .badge-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .header-desc {
+      font-size: 1.125rem;
+      max-width: 780px;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 28px;
+    }
+
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 18px 20px;
+      border-radius: var(--radius-md);
+      color: #fff;
+    }
+
+    .stat-card .label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      opacity: 0.85;
+      margin-bottom: 4px;
+    }
+
+    .stat-card .value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+    }
+
+    /* Quick Specs Grid */
+    .specs-section {
+      margin-top: -36px;
+      position: relative;
+      z-index: 10;
+      margin-bottom: 50px;
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 20px;
+    }
+
+    .spec-box {
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .spec-box h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .spec-box ul {
+      list-style: none;
+    }
+
+    .spec-box li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 8px;
+      font-size: 0.92rem;
+      color: var(--slate-700);
+    }
+
+    .spec-box li::before {
+      content: "•";
+      color: var(--primary-light);
+      position: absolute;
+      left: 4px;
+      font-weight: bold;
+    }
+
+    /* Speculative Grammar Callout */
+    .grammar-callout {
+      background: linear-gradient(135deg, #eff6ff 0%, #e0f2fe 100%);
+      border: 1px solid #bfdbfe;
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin-bottom: 48px;
+    }
+
+    .grammar-callout h3 {
+      color: #1e40af;
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .grammar-callout p {
+      color: #1e3a8a;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
+
+    .grammar-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill {
+      background: #ffffff;
+      border: 1px solid #93c5fd;
+      color: #1e40af;
+      font-family: monospace;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    /* Section Headers */
+    .section-title-wrap {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .section-subtitle {
+      color: var(--slate-600);
+      font-size: 1rem;
+      margin-top: 6px;
+    }
+
+    /* Timeline Navigation */
+    .timeline-nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 14px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--slate-200);
+    }
+
+    .timeline-btn {
+      flex: 0 0 auto;
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--slate-600);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .timeline-btn:hover {
+      background: var(--slate-100);
+      color: var(--dark);
+    }
+
+    .timeline-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(15, 81, 50, 0.25);
+    }
+
+    .timeline-btn .pill-week {
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      background: rgba(0,0,0,0.08);
+      border-radius: 999px;
+    }
+
+    .timeline-btn.active .pill-week {
+      background: rgba(255,255,255,0.25);
+    }
+
+    /* Checkpoint Card */
+    .checkpoint-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--slate-200);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+
+    .checkpoint-header {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      padding: 28px 32px;
+      border-bottom: 1px solid var(--slate-200);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .checkpoint-title-grp h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.45rem;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .meeting-badge {
+      background: var(--primary-subtle);
+      color: var(--primary);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .checkpoint-header p {
+      color: var(--slate-600);
+      font-size: 0.95rem;
+      margin-top: 4px;
+    }
+
+    .questions-box {
+      margin: 24px 32px 10px;
+      background: #fefce8;
+      border: 1px solid #fef08a;
+      border-radius: var(--radius-md);
+      padding: 18px 22px;
+    }
+
+    .questions-box h4 {
+      color: #854d0e;
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .questions-box ul {
+      margin-left: 20px;
+      color: #713f12;
+      font-size: 0.92rem;
+    }
+
+    .questions-box li {
+      margin-bottom: 4px;
+    }
+
+    /* 3-Column Action Workflow */
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 20px;
+      padding: 24px 32px 32px;
+    }
+
+    .action-col {
+      border-radius: var(--radius-md);
+      padding: 22px;
+      border: 1px solid transparent;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .col-before {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+    }
+
+    .col-during {
+      background: #f0fdf4;
+      border-color: #bbf7d0;
+    }
+
+    .col-next {
+      background: #eff6ff;
+      border-color: #bfdbfe;
+    }
+
+    .col-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .col-before .col-title { color: var(--slate-800); }
+    .col-during .col-title { color: #166534; }
+    .col-next .col-title { color: #1e40af; }
+
+    .action-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex-grow: 1;
+    }
+
+    .action-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.9rem;
+      line-height: 1.45;
+      color: var(--slate-700);
+    }
+
+    .action-item input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--slate-300);
+      border-radius: 4px;
+
+      cursor: pointer;
+      margin-top: 2px;
+      position: relative;
+      flex-shrink: 0;
+      background: #ffffff;
+      transition: all 0.15s ease;
+    }
+
+    .action-item input[type="checkbox"]:checked {
+      background-color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .action-item input[type="checkbox"]:checked::after {
+      content: "✔";
+      font-size: 11px;
+      color: white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .action-item input[type="checkbox"]:checked + label {
+      text-decoration: line-through;
+      color: var(--slate-600);
+      opacity: 0.8;
+    }
+
+    /* Print & Action Controls */
+    .action-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid var(--slate-200);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      border: 1px solid var(--slate-300);
+      color: var(--slate-700);
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-secondary:hover {
+      background: var(--slate-100);
+    }
+
+    .progress-track {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--slate-600);
+    }
+
+    .progress-bar-bg {
+      width: 160px;
+      height: 8px;
+      background: var(--slate-200);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--primary-light);
+      transition: width 0.3s ease;
+    }
+
+    input[type="checkbox"]:focus-visible, button:focus-visible {
+      outline: 3px solid var(--secondary);
+      outline-offset: 3px;
+    }
+    .action-item label { cursor: pointer; }
+    @media print {
+      header { padding: 20px; color: #000; background: #fff; }
+      .header-desc, .stat-card { color: #000; }
+      .timeline-nav, .action-bar { display: none; }
+      .specs-section { margin-top: 20px; }
+      .workflow-grid { display: block; }
+      .action-col { margin-bottom: 12px; break-inside: avoid; }
+      .checkpoint-card { box-shadow: none; }
+    }
+    .research-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .research-grid h4 { color: var(--primary); margin-bottom: 8px; }
+    @media (max-width: 480px) {
+      .specs-grid, .workflow-grid, .research-grid { grid-template-columns: 1fr; }
+      .checkpoint-title-grp h2, .col-title { flex-wrap: wrap; gap: 8px; }
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+      .checkpoint-header {
+        padding: 20px;
+      }
+      .questions-box {
+        margin: 16px 20px 0;
+      }
+      .workflow-grid {
+        padding: 20px;
+      }
+    }
+
+    .honesty-hub { margin-top: 28px; padding-top: 24px; border-top: 2px solid #93c5fd; }
+    .honesty-hub > h3 { color: #854d0e; background: #fef3c7; padding: 14px; border-radius: 8px; }
+    .honesty-hub details { background: #fff; border: 1px solid #bfdbfe; border-radius: 10px; padding: 16px; margin: 14px 0; }
+    .honesty-hub summary { cursor: pointer; font-weight: 700; color: #1e40af; }
+    .honesty-hub details p { margin-top: 14px; }
+    .honesty-hub ul { padding-left: 22px; color: #1e3a8a; font-size: .95rem; }
+    .honesty-hub li { margin: 10px 0; }
+    .honesty-table-wrap { overflow-x: auto; margin: 16px 0; }
+    .honesty-table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+    .honesty-table th, .honesty-table td { padding: 12px; text-align: left; vertical-align: top; border-bottom: 1px solid #bfdbfe; color: #1e3a8a; }
+    .honesty-table th { background: #eff6ff; }
+    .honesty-table td:first-child { min-width: 140px; }
+    .honesty-check { background: #fef3c7; padding: 16px; border-radius: 8px; }
+    summary:focus-visible { outline: 3px solid var(--secondary); outline-offset: 3px; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="badge-tag">Prep IS English Project • Design for Tomorrow</div>
+      <h1>Homes of the Future: Designing Tomorrow’s Living Spaces</h1>
+      <p class="header-desc">
+        What could home life be like in 50–100 years? Research ideas being developed today, imagine future challenges, and design your own home. Explain how at least three special features would help the people who live there.
+      </p>
+
+      <div class="stats-bar">
+        <div class="stat-card">
+          <div class="label">What You Will Make</div>
+          <div class="value">Report 50% • Design 25% • Talk 25%</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Features to Explain</div>
+          <div class="value">At Least 3 Features</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Presentation</div>
+          <div class="value">5 – 10 Minutes</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Project Checks</div>
+          <div class="value">5 Progress Checks</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- SPECS & RULES -->
+    <section class="specs-section">
+      <div class="specs-grid">
+        <div class="spec-box">
+          <h3>📌 What to Hand In</h3>
+          <ul>
+            <li><strong>Report — 50%:</strong> Describe your future world, research findings, and home design. Explain at least three special features. Include a conclusion and source list.</li>
+            <li><strong>Visual design — 25%:</strong> Show your home through a labelled sketch, a plan showing rooms, a 3D model, or a digital design.</li>
+            <li><strong>Presentation — 25%:</strong> Give a 5–10 minute talk. Use your design to explain your ideas and answer questions.</li>
+            <li><strong>Your own work:</strong> Make an original design. Give credit for borrowed facts, ideas, images, and quotations.</li>
+          </ul>
+        </div>
+        <div class="spec-box">
+          <h3>🏡 Choose Your Design Format</h3>
+          <ul>
+            <li><strong>Sketch or plan:</strong> Draw the home, label the features, and show how the spaces connect. Add sizes or a simple scale where useful.</li>
+            <li><strong>Physical 3D model:</strong> Build a model using materials you can work with. Add labels or a key to explain the features.</li>
+            <li><strong>Digital design:</strong> Use slides with images, a digital mood board (a collection of design images and notes), or a video tour.</li>
+            <li>Your design must show your ideas clearly. Simple tools are enough if your explanations are clear.</li>
+          </ul>
+        </div>
+        <div class="spec-box">
+          <h3>🎯 Explain Your Home</h3>
+          <ul>
+            <li><strong>Year and place:</strong> Choose a year 50–100 years from now and a real, imagined, or virtual location.</li>
+            <li><strong>Future challenges:</strong> Explain what might change, such as the climate, population, space, energy, or water supply.</li>
+            <li><strong>At least three features:</strong> For each one, explain what it is, how it might work, and which challenge it could solve.</li>
+            <li><strong>Research and imagination:</strong> Show which ideas are based on current research and which are your own predictions.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="spec-box" style="margin-bottom:32px">
+      <h3>🔎 Four Questions to Research</h3>
+      <div class="research-grid">
+        <div><h4>1. Physical or virtual?</h4><p>Will people live mainly in physical homes, or spend more time in virtual spaces? If your home includes virtual reality, where will people sleep, eat, and keep their bodies safe?</p></div>
+        <div><h4>2. Materials and building</h4><p>What could the home be made of? Research ideas such as 3D printing, materials that repair themselves, or building with living materials. Explain how your choice could help.</p></div>
+        <div><h4>3. Location and shape</h4><p>Could homes float on water, be built underground, move to new places, or exist on another planet? Why might people need a different location or shape?</p></div>
+        <div><h4>4. Daily life</h4><p>How would people get energy, water, and food? Could AI manage the home? How might furniture change? Explain what a normal day would look like.</p></div>
+      </div>
+      <p style="margin-top:14px"><strong>Research tip:</strong> Start with 3–4 reliable sources as a useful target. Try research organisations, original project descriptions, and well-known science or architecture publications. Check who wrote each source and when. A design idea being tested today is not a promise that it will be common in the future.</p>
+    </section>
+
+    <section class="spec-box" style="margin-bottom:32px">
+      <h3>🧩 Connect the Problem to the Design</h3>
+      <p>For each feature, follow this pattern: <strong>Future challenge → Design feature → How it could work → Benefit → Possible limit.</strong> A possible limit is something that might make the idea difficult to use.</p>
+      <p style="margin-top:12px"><strong>Imagined example:</strong> Summers might become hotter. My home could have a roof garden to provide shade. Plants might help keep the rooms cooler, but they would need enough water. I would collect rainwater to help water them. This is a design idea to research, not proof that it will work everywhere.</p>
+      <p style="margin-top:12px"><strong>Report plan:</strong> Title and your name → Introduction → Future year, location, and challenges → Research under the four questions → Your design and at least three features → Daily life → Conclusion → Source list.</p>
+      <p style="margin-top:12px"><strong>Useful check:</strong> Does every special feature solve a clear problem? Explain the connection. Avoid adding technology only because it looks exciting.</p>
+    </section>
+
+    <section class="grammar-callout">
+      <h3>💡 Useful Language: Predictions and Design Ideas</h3>
+      <p>Use <strong>might, may, and could</strong> for possibilities. Use <strong>would</strong> to explain life in your imagined design. Give a reason for each prediction.</p>
+      <div class="grammar-pills">
+        <span class="pill">In [year], people might...</span>
+        <span class="pill">This home could be built...</span>
+        <span class="pill">It might be powered by...</span>
+        <span class="pill">This feature would help because...</span>
+        <span class="pill">If..., the home would...</span>
+        <span class="pill">One possible problem is...</span>
+      </div>
+      <p style="margin-top:16px"><strong>Example:</strong> If cities had less space, homes could use furniture that folds away. This would allow one room to have several uses.</p>
+      <p><strong>Separate evidence from prediction:</strong> “According to [source], researchers are testing...” describes research you have checked. “In my design, this technology might...” introduces your prediction.</p>
+      <p><strong>Past guesses, when they fit:</strong> Imagine someone in the future looking at an old home. “It might have been built to...” suggests a possible reason. “It must have been used for...” expresses a strong belief based on evidence. Use these forms only when talking about the past.</p>
+
+      <div class="honesty-hub">
+        <h3>🛡️ Academic Honesty: Show What Is Yours and What Comes from a Source</h3>
+        <p><strong>Academic honesty means being clear about whose words, ideas, and work you use.</strong> Your project should show your understanding. Give credit for borrowed ideas, facts, exact words, pictures, charts, and videos. A source note tells the reader where information came from.</p>
+        <p><strong>A key rule:</strong> Changing a few words, translating a text, or turning a quotation into reported speech does not make the idea yours. You still need to name the source. A source list at the end is not enough on its own: add a source note beside the borrowed information too.</p>
+
+        <details open>
+          <summary>✍️ Quote, paraphrase, or summarise: which should I use?</summary>
+          <p><strong>Practice only:</strong> All examples here use an invented author, Alex Green, and an invented text from 2026. They show the method. Do not use this author or text as a real source in your project.</p>
+          <p><strong>Original practice sentence:</strong> “Future homes may need to use less energy and water.”</p>
+          <div class="honesty-table-wrap">
+            <table class="honesty-table">
+              <thead><tr><th>Method</th><th>How to do it honestly</th><th>Model and useful language</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Quote</strong><br>Use exact words.</td><td>Use a short quotation when the wording matters. Copy it accurately, use quotation marks, and name the author and source. Add a page number or video timestamp when available.</td><td>Green (2026) writes, “Future homes may need to use less energy and water.”<br><em>According to [author] ([year]), “...”</em></td></tr>
+                <tr><td><strong>Paraphrase</strong><br>Explain an idea in your own words.</td><td>Read until you understand. Look away from the original and explain the idea using your own sentence structure. Then check that the meaning is accurate and add the source. Replacing a few words with synonyms is not enough.</td><td>Green (2026) explains that homes in the future might have to reduce their use of water and energy.<br><em>[Author] ([year]) explains that...</em><br><em>According to [author] ([year]),...</em></td></tr>
+                <tr><td><strong>Summarise</strong><br>Give only the main point.</td><td>Make the original idea much shorter. Leave out small details, keep the main meaning, and name the source. Do not add your opinion as if it came from the author.</td><td>Green (2026) discusses saving resources in future homes.<br><em>The main point of [title] is that...</em><br><em>[Author] ([year]) focuses on...</em></td></tr>
+                <tr><td><strong>Report someone's words</strong></td><td>Say who spoke and where you found the statement. Change pronouns and tenses where needed. Keep the meaning and credit the interview, article, or video. Do not use quotation marks for wording you have changed.</td><td><em>In an interview with [publication] ([year]), [speaker] said that...</em><br><em>[Speaker] told [interviewer] that...</em></td></tr>
+                <tr><td><strong>Translate a source</strong></td><td>You may explain an idea from another language in your own English. Credit the original source. If you translate exact words as a quotation, label it “my translation”.</td><td><em>According to [author] ([year]),...</em><br><em>[Author] writes, “...” (my translation; [year], p. [page]).</em></td></tr>
+                <tr><td><strong>Combine sources</strong></td><td>Compare ideas from two sources and name both. Make it clear which idea comes from each source and which conclusion is yours.</td><td><em>[Author A] ([year]) argues that..., while [Author B] ([year]) suggests...</em><br><em>Together, these ideas suggest... In my view,...</em></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p><strong>Add your own thinking:</strong> Green (2026) explains that homes in the future might have to reduce their use of water and energy. <em>In my view, this supports including a water-saving feature in my home design.</em> The first sentence credits the source. The second clearly introduces your response.</p>
+        </details>
+
+        <details>
+          <summary>📚 Keep useful source notes</summary>
+          <ul>
+            <li>When you research, save the author or organisation, title, date, link, and any useful page number or video timestamp.</li>
+            <li>Keep exact quotations in quotation marks in your notes. Put your own notes beside them so you can tell them apart later.</li>
+            <li>Use a short source note in the report, such as <em>(Author, year)</em>. For an organisation's work, use its name. If no date is given, use <em>n.d.</em> (“no date”). Follow any format your teacher gives you.</li>
+            <li>At the end, list full source details. A simple web-source pattern is: <em>Author or organisation. (Year or n.d.). Title. Website name. URL.</em></li>
+            <li>Match every source note to an entry in your source list. Use sources you have actually read or watched. Never invent an author, quotation, date, or link.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>🖼️ Pictures, charts, videos, and help from others</summary>
+          <ul>
+            <li>Add credit beside a borrowed image, chart, or clip, and include the full source in your source list. For example: <em>Image: [creator], [website], [year].</em></li>
+            <li>If you make a chart using someone else's data, write <em>Chart by me; data from [source] ([year]).</em></li>
+            <li>Crediting an image does not automatically give you permission to reuse it. Use your own images or material that allows reuse, and follow its conditions.</li>
+            <li>For your own photos or drawings, you can write <em>Photo/drawing by me.</em> You do not need a research source for your own opinions or widely known facts.</li>
+            <li>Follow your teacher's rules about outside help and AI. If help is allowed, explain what help you used. Check facts against real sources and make sure you understand and can explain your final work.</li>
+          </ul>
+        </details>
+
+        <p class="honesty-check"><strong>✅ Before you hand in:</strong> Are exact words in quotation marks? Are paraphrases truly in your own words? Are borrowed ideas and visuals credited beside them? Does every source note match the source list? Can you explain what you wrote?</p>
+      </div>
+    </section>
+
+    <!-- SECTION TITLE -->
+    <div class="section-title-wrap">
+      <h2 class="section-title">Your Project, Step by Step</h2>
+      <p class="section-subtitle">Use the five checks to build your project. The tabs show the week for each check, the final hand-in, and the presentation. Confirm the exact dates with your teacher. Tick a task only when it is finished.</p>
+    </div>
+
+    <!-- TIMELINE NAV -->
+    <div class="timeline-nav" id="timelineNav">
+      <button class="timeline-btn active" onclick="switchWeek(5)"><span class="pill-week">Week 5</span> Check 1: Choose Your Idea</button>
+      <button class="timeline-btn" onclick="switchWeek(7)"><span class="pill-week">Week 7</span> Check 2: Research</button>
+      <button class="timeline-btn" onclick="switchWeek(11)"><span class="pill-week">Week 11</span> Check 3: Plan Your Design</button>
+      <button class="timeline-btn" onclick="switchWeek(18)"><span class="pill-week">Week 18</span> Check 4: First Draft</button>
+      <button class="timeline-btn" onclick="switchWeek(23)"><span class="pill-week">Week 23</span> Check 5: Improve Your Work</button>
+      <button class="timeline-btn" onclick="switchWeek(29)"><span class="pill-week">Week 29 • 30 April</span> Final Hand-in</button>
+      <button class="timeline-btn" onclick="switchWeek(32)"><span class="pill-week">Weeks 32–34</span> Presentation</button>
+    </div>
+
+    <!-- DYNAMIC CHECKPOINT DISPLAY -->
+    <div id="checkpointContainer"></div>
+
+    <p style="color:var(--slate-600);font-size:0.9rem">Ticks are saved automatically in this browser on this device. They do not send work to your teacher. Clearing browser data removes your saved ticks.</p>
+    <!-- ACTION & PROGRESS BAR -->
+    <div class="action-bar">
+      <div class="progress-track">
+        <span>Overall Progress:</span>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="progressFill"></div>
+        </div>
+        <span id="progressText">0%</span>
+      </div>
+      <div>
+        <button class="btn-secondary" onclick="window.print()">🖨️ Print This Step</button>
+        <button class="btn-secondary" onclick="resetChecklist()">🔄 Reset Progress</button>
+      </div>
+    </div>
+
+<section class="spec-box" style="margin-top:36px"><h3>📊 What Good Work Looks Like</h3><div class="research-grid">
+<div><h4>Report — 50%</h4><p>Clear future challenges; research covering all four questions; at least three well-explained features; a logical structure; useful prediction language; and accurate source credits.</p></div>
+<div><h4>Visual design — 25%</h4><p>An original, clear design that matches your report. Labels help the audience understand how the home and its features might work.</p></div>
+<div><h4>Presentation — 25%</h4><p>A clear 5–10 minute explanation, useful visuals, short speaking notes, and answers showing that you understand your research and design.</p></div>
+</div></section>
+  </main>
+
+  <script>
+    const checkpoints = [
+      {
+            "week": 5,
+            "title": "Choose Your Future World",
+            "meetingType": "Check 1 • Week 5",
+            "desc": "Choose the year, place, and main challenges for your home.",
+            "target": "A home idea with a future year, location, and short explanation of the challenges.",
+            "questions": [
+                  "What might change in the world in 50–100 years?",
+                  "Where would your home be, and who would live there?",
+                  "What problems would your design try to solve?"
+            ],
+            "before": [
+                  "Read the project requirements and assessment targets.",
+                  "Think of two possible home ideas. For each, choose a future year and location.",
+                  "Choose one idea. Write a short paragraph explaining who would live there and the challenges they might face."
+            ],
+            "during": [
+                  "Explain your idea and why you chose it.",
+                  "Discuss whether the future challenges give you a clear focus for research.",
+                  "Agree on your direction and confirm Check 2 in Week 7."
+            ],
+            "assignment": [
+                  "Research current ideas under all four questions above: physical or virtual, materials, location, and daily life.",
+                  "Start with 3–4 reliable sources as a useful target. Save author or organisation, title, date, and link.",
+                  "Take notes in your own words. Mark the difference between real research and your own predictions."
+            ]
+      },
+      {
+            "week": 7,
+            "title": "Check Your Research",
+            "meetingType": "Check 2 • Week 7",
+            "desc": "Use current research to develop your future-home idea.",
+            "target": "Research notes covering the four questions, a source list, and possible design features.",
+            "questions": [
+                  "Which ideas are already being tested, and which are only predictions?",
+                  "Why can you trust your sources?",
+                  "Which ideas could help solve your chosen challenges?"
+            ],
+            "before": [
+                  "Bring notes under each of the four research questions and a source list.",
+                  "Find examples of current building or technology ideas that could influence your design.",
+                  "List possible features. Note the problem each one could help solve."
+            ],
+            "during": [
+                  "Review your sources and check claims that seem uncertain.",
+                  "Explain how research could influence your design without copying someone else’s whole home.",
+                  "Choose promising features and confirm Check 3 in Week 11."
+            ],
+            "assignment": [
+                  "Choose at least three special features. Note how each might work, its benefit, and a possible limit.",
+                  "Draw a first sketch showing the rooms and main features. Label the year and location.",
+                  "Prepare a report outline and work schedule. Choose your visual design format."
+            ]
+      },
+      {
+            "week": 11,
+            "title": "Plan Your Home and Report",
+            "meetingType": "Check 3 • Week 11",
+            "desc": "Turn your research into a clear, original design.",
+            "target": "A labelled design sketch, at least three feature explanations, and a report outline.",
+            "questions": [
+                  "How does each feature solve a future challenge?",
+                  "Could people live comfortably and safely in this home?",
+                  "Does your report plan include research as well as your own ideas?"
+            ],
+            "before": [
+                  "Bring a labelled sketch or plan showing the rooms, main features, year, and location.",
+                  "For at least three features, prepare notes on the challenge, how the feature might work, its benefit, and a possible limit.",
+                  "Bring your report outline, source list, chosen visual format, and schedule for finishing the work."
+            ],
+            "during": [
+                  "Explain the design and how daily life would work inside it.",
+                  "Check the links between your research, predictions, and feature choices.",
+                  "Agree on any changes and confirm Check 4 in Week 18."
+            ],
+            "assignment": [
+                  "Write your complete first draft using the report plan. Credit borrowed facts and ideas beside the information.",
+                  "Develop your sketch, model, slides, mood board, or video tour. Label the special features clearly.",
+                  "Use might, could, and would to explain ideas. Mark 2–3 parts where you want feedback."
+            ]
+      },
+      {
+            "week": 18,
+            "title": "Share Your First Draft",
+            "meetingType": "Check 4 • Week 18",
+            "desc": "Get feedback on your report and developing design.",
+            "target": "A complete report draft, an early visual design, and a list of improvements.",
+            "questions": [
+                  "Have you answered the four research questions?",
+                  "Are at least three features explained clearly and connected to challenges?",
+                  "Can the reader tell research findings from predictions?"
+            ],
+            "before": [
+                  "Bring the full first draft, including a conclusion and source list.",
+                  "Bring your developing visual design and feature labels.",
+                  "Use the Academic Honesty checklist. Mark 2–3 sections where you want help."
+            ],
+            "during": [
+                  "Discuss your marked sections and show how the design responds to challenges.",
+                  "Check explanations, prediction language, source notes, and the clarity of the visuals.",
+                  "Write a list of changes and confirm Check 5 in Week 23."
+            ],
+            "assignment": [
+                  "Improve the report and design using the feedback.",
+                  "Add any missing explanations, labels, or source credits. Test digital materials if needed.",
+                  "Plan a 5–10 minute talk. Bring your second draft and improved design to Check 5."
+            ]
+      },
+      {
+            "week": 23,
+            "title": "Improve Your Work and Plan Your Talk",
+            "meetingType": "Check 5 • Week 23",
+            "desc": "Review your changes and prepare to finish all parts.",
+            "target": "An improved report, a nearly finished design, and a presentation outline.",
+            "questions": [
+                  "What did you improve after Check 4?",
+                  "Do your report and visual design show the same ideas?",
+                  "How will you explain your home without reading whole paragraphs?"
+            ],
+            "before": [
+                  "Bring the second draft and mark the changes you made.",
+                  "Bring your improved visual design. Check the year, location, rooms, and at least three feature labels.",
+                  "Make a talk outline: future challenges, useful research, home design, daily life, and conclusion."
+            ],
+            "during": [
+                  "Check your changes and identify any work still needed.",
+                  "Review your talk outline and how you will show the design.",
+                  "Confirm final hand-in on 30 April (Week 29), the presentation date in Weeks 32–34, and any equipment you need."
+            ],
+            "assignment": [
+                  "Finish and proofread the report. Check all source notes against the source list.",
+                  "Finish your visual design. Make sure the feature labels are easy to read.",
+                  "Prepare the report and design for 30 April (Week 29)."
+            ]
+      },
+      {
+            "week": 29,
+            "title": "Hand In Your Report and Design",
+            "meetingType": "Final Hand-in • Week 29 • 30 April",
+            "desc": "Submit both finished parts on 30 April (Week 29).",
+            "target": "A complete report and visual design, with a confirmed presentation date.",
+            "questions": [
+                  "Are the future year, location, and challenges clear?",
+                  "Does the work explain at least three special features and include visuals?",
+                  "Are sources credited, and do any digital files or links work?"
+            ],
+            "before": [
+                  "Check the report includes your name, all required sections, and a source list.",
+                  "Check your design is finished and labelled. Test digital files, video, or links.",
+                  "Save backup copies of your report and any digital materials."
+            ],
+            "during": [
+                  "Hand in your report and visual design in the format agreed with your teacher.",
+                  "Confirm your presentation date in Weeks 32–34 and the equipment you need.",
+                  "Agree on when to share slides or video before the talk."
+            ],
+            "assignment": [
+                  "Practise with a timer. Keep your talk between 5 and 10 minutes.",
+                  "Use short notes and prepare to explain your research, feature choices, and possible limits.",
+                  "Share materials by the agreed date. Bring a backup of digital files."
+            ]
+      },
+      {
+            "week": 32,
+            "title": "Present Your Future Home",
+            "meetingType": "Presentation • Weeks 32–34",
+            "desc": "Show how your home could respond to a changing world.",
+            "target": "A clear 5–10 minute talk and answers to questions about your design.",
+            "questions": [
+                  "Can you explain your design in your own words?",
+                  "Can you connect each feature to a challenge and relevant research?",
+                  "Can you explain a possible limit without pretending every idea is certain?"
+            ],
+            "before": [
+                  "Practise a 5–10 minute talk with short notes.",
+                  "Check the visual design is ready and easy for the audience to see.",
+                  "Prepare answers about how the home might work and bring backups if needed."
+            ],
+            "during": [
+                  "Introduce your future year, location, residents, and challenges.",
+                  "Show the design. Explain at least three features, how they might work, and what daily life would be like.",
+                  "Finish with your main message and answer questions using your research and ideas."
+            ],
+            "assignment": [
+                  "Write a short reflection: what worked well, what was difficult, and one thing you would improve.",
+                  "Read or discuss your feedback. Choose one goal for your next project."
+            ]
+      }
+];
+
+    let currentWeek = 5;
+
+    function renderCheckpoint(weekNum) {
+      const data = checkpoints.find(c => c.week === weekNum);
+      if (!data) return;
+
+      const container = document.getElementById("checkpointContainer");
+      container.innerHTML = `
+        <div class="checkpoint-card">
+          <div class="checkpoint-header">
+            <div class="checkpoint-title-grp">
+              <h2>
+                <span>${data.title}</span>
+                <span class="meeting-badge">${data.meetingType}</span>
+              </h2>
+              <p>${data.desc}</p>
+              <p><strong>Target for this step:</strong> ${data.target}</p>
+            </div>
+          </div>
+
+          <div class="questions-box">
+            <h4>🎯 Questions to Help You</h4>
+            <ul>
+              ${data.questions.map(q => `<li>${q}</li>`).join("")}
+            </ul>
+          </div>
+
+          <div class="workflow-grid">
+            <!-- BEFORE -->
+            <div class="action-col col-before">
+              <div class="col-title">
+                <span>🎒 Get Ready</span>
+                <small>Bring or prepare</small>
+              </div>
+              <ul class="action-list">
+                ${data.before.map((task, idx) => `
+                  <li class="action-item">
+                    <input type="checkbox" id="chk_${data.week}_b_${idx}" onchange="saveProgress()" />
+                    <label for="chk_${data.week}_b_${idx}">${task}</label>
+                  </li>
+                `).join("")}
+              </ul>
+            </div>
+
+            <!-- DURING -->
+            <div class="action-col col-during">
+              <div class="col-title">
+                <span>🤝 At This Step</span>
+                <small>Check together</small>
+              </div>
+              <ul class="action-list">
+                ${data.during.map((task, idx) => `
+                  <li class="action-item">
+                    <input type="checkbox" id="chk_${data.week}_d_${idx}" onchange="saveProgress()" />
+                    <label for="chk_${data.week}_d_${idx}">${task}</label>
+                  </li>
+                `).join("")}
+              </ul>
+            </div>
+
+            <!-- ASSIGNMENT -->
+            <div class="action-col col-next">
+              <div class="col-title">
+                <span>📝 Finish Next</span>
+                <small>Next target</small>
+              </div>
+              <ul class="action-list">
+                ${data.assignment.map((task, idx) => `
+                  <li class="action-item">
+                    <input type="checkbox" id="chk_${data.week}_a_${idx}" onchange="saveProgress()" />
+                    <label for="chk_${data.week}_a_${idx}">${task}</label>
+                  </li>
+                `).join("")}
+              </ul>
+            </div>
+          </div>
+        </div>
+      `;
+
+      loadProgress();
+      updateProgressBar();
+    }
+
+    function switchWeek(weekNum) {
+      currentWeek = weekNum;
+      document.querySelectorAll(".timeline-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.getAttribute("onclick").includes(weekNum));
+      });
+      renderCheckpoint(weekNum);
+    }
+
+    function readProgress() {
+      try {
+        const saved = JSON.parse(localStorage.getItem("future_homes_progress_v1") || "{}");
+        return saved && typeof saved === "object" && !Array.isArray(saved) ? saved : {};
+      } catch (_) { return {}; }
+    }
+
+    function saveProgress() {
+      const state = readProgress();
+      document.querySelectorAll("input[type='checkbox']").forEach(box => {
+        state[box.id] = box.checked;
+      });
+      try { localStorage.setItem("future_homes_progress_v1", JSON.stringify(state)); } catch (_) {}
+      updateProgressBar();
+    }
+
+    function loadProgress() {
+      const saved = readProgress();
+      document.querySelectorAll("input[type='checkbox']").forEach(box => {
+        box.checked = saved[box.id] === true;
+      });
+    }
+
+    function updateProgressBar() {
+      const saved = readProgress();
+      let totalTasks = 0;
+      checkpoints.forEach(cp => {
+        totalTasks += cp.before.length + cp.during.length + cp.assignment.length;
+      });
+
+      const checkedCount = checkpoints.reduce((count, cp) => count +
+        [['b', cp.before], ['d', cp.during], ['a', cp.assignment]].reduce((sum, [key, tasks]) =>
+          sum + tasks.filter((_, idx) => saved[`chk_${cp.week}_${key}_${idx}`] === true).length, 0), 0);
+      const percentage = Math.min(100, Math.round((checkedCount / totalTasks) * 100));
+
+      const fill = document.getElementById("progressFill");
+      const text = document.getElementById("progressText");
+      if (fill && text) {
+        fill.style.width = percentage + "%";
+        text.innerText = percentage + "% completed";
+      }
+    }
+
+    function resetChecklist() {
+      if (confirm("Reset all ticks in every step?")) {
+        try { localStorage.removeItem("future_homes_progress_v1"); } catch (_) {}
+        loadProgress();
+        updateProgressBar();
+      }
+    }
+
+    let printDetails = [];
+    window.addEventListener('beforeprint', () => {
+      printDetails = Array.from(document.querySelectorAll('details')).map(el => [el, el.open]);
+      printDetails.forEach(([el]) => { el.open = true; });
+    });
+    window.addEventListener('afterprint', () => {
+      printDetails.forEach(([el, wasOpen]) => { el.open = wasOpen; });
+    });
+
+    // Initial render
+    document.addEventListener("DOMContentLoaded", () => {
+      renderCheckpoint(5);
+    });
+  </script>
+</body>
+</html>
+
+
